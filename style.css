@@ -1,4 +1,17 @@
 /* Custom font sizes for smaller screens */
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('path/to/Gilroy-Regular.woff2') format('woff2'),
+        /* Use this path for .woff2 */
+        url('path/to/Gilroy-Regular.woff') format('woff');
+    /* Use this path for .woff */
+}
+
+* {
+    font-family: 'Gilroy', sans-serif;
+}
+
 .responsive-text {
     font-size: 0.9rem;
 }
@@ -77,16 +90,74 @@
     /* Ensure it's on top of the background image */
 }
 
-.z-index-2 {
-    position: relative; /* Add this to apply z-index */
+/* Main Button Style */
+.main-image-button {
+    width: 80%;
+    max-width: 350px;
+    height: auto;
+    padding: 15px 0;
+    font-weight: 800 !important;
+    margin: 10px 22px;
+    letter-spacing: 2px;
+    font-size: 1.2rem;
+    position: relative;
     z-index: 10;
-    padding-top: 450px;
-    padding-left: 30px;
-}
-.ml-2{
-    margin-left: 30px;
+    border: none;
+    outline: none;
+    text-align: center;
 }
 
-.image-InFontsize{
-    font-size: 1.2rem;
+/* Responsive Heading */
+.z-index-2 {
+    position: relative;
+    z-index: 10;
+    padding-top: 70vh;
+    /* Starts lower on larger screens */
+    padding-left: 2%;
+}
+
+/* Responsive Paragraph */
+.image-InFontsize {
+    font-size: 1rem;
+    margin: 0 2%;
+}
+
+/* Adjustments for Smaller Screens */
+@media (max-width: 768px) {
+    .main-image-button {
+        font-size: 1rem;
+        letter-spacing: 1px;
+        font-weight: 800 !important;
+        padding: 12px 0;
+    }
+
+    .z-index-2 {
+        padding-top: 80vh;
+        /* Adjusts for smaller screens */
+        padding-left: 2%;
+    }
+
+    .image-InFontsize {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-image-button {
+        font-size: 0.9rem;
+        width: 70%;
+        padding: 10px 0;
+    }
+
+    .z-index-2 {
+        padding-top: 80vh;
+        /* Adjusts for very small screens */
+        padding-left: 5%;
+    }
+
+    .image-InFontsize {
+        font-size: 0.8rem;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
 }
