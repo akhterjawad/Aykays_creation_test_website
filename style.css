@@ -4,10 +4,13 @@
     /* Default font size */
 }
 
-@media (max-width: 876px) {
+@media (max-width: 892px) {
     .responsive-text {
         font-size: 0.7rem;
-        /* Smaller font size for extra small screens */
+    }
+
+    .navbar-nav .nav-link {
+        margin: 0 10px;
     }
 }
 
@@ -28,4 +31,78 @@
     background-color: #444444;
     color: white;
     /* Optional text color for readability */
+}
+
+/* Custom styling */
+.navbar-logo img {
+    max-width: 150px;
+    /* Adjust logo size */
+}
+
+.navbar-nav .nav-link {
+    color: black;
+    margin: 0 30px;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-collapse {
+    justify-content: end;
+}
+
+.dropdown-item {
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+}
+
+
+.navbar-nav .nav-link {
+    color: black;
+    margin: 0 30px;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+@media (max-width: 876px) {
+    .navbar-nav .nav-link {
+        margin: 0 10px;
+        /* Margin with units for smaller screens */
+    }
+}
+
+/* Mega menu styles */
+.mega-menu {
+    display: none;
+    /* Hidden by default */
+    position: absolute;
+    /* Positioning for mega menu */
+    background: white;
+    z-index: 1000;
+    /* Ensure it appears above other content */
+    padding: 10px;
+    box-shadow: 2px 2px 2px;
+    min-width: 100px;
+    opacity: 0;
+    /* Initially invisible */
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    /* Transition for smooth effect */
+}
+
+.mega-menu.show {
+    display: block;
+    /* Show mega menu */
+    opacity: 1;
+
+    transform: translateY(0);
+
+}
+
+.dropdown-item {
+    padding: 5px 10px;
+    /* Padding for dropdown items */
 }
