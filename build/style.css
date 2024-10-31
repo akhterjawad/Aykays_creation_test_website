@@ -10,6 +10,9 @@
 
 * {
     font-family: 'Gilroy', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .responsive-text {
@@ -540,20 +543,24 @@ h1 {
     .footer .contact-info p,
     .footer .footer-links li {
         font-size: 14px;
-        
+
     }
 }
+
 .line-height {
     line-height: 1;
 }
+
 .line-height-2 {
     line-height: 2.3;
 }
-.contact-info, .grey{
+
+.contact-info,
+.grey {
     color: #dadada;
 }
 
-.container-2{
+.container-2 {
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 10px;
@@ -563,45 +570,37 @@ h1 {
 
 
 .position-relative {
-    overflow: hidden !important; /* This may cut off child elements if their positioning is not set properly */
+    overflow: hidden !important;
+    /* This may cut off child elements if their positioning is not set properly */
 }
+
 .carousel-prev {
-    z-index: 2 !important; /* Increase if necessary */
+    z-index: 100 !important;
+    /* Increase if necessary */
 }
 
 
-.ml-2{
+.ml-2 {
     margin-left: 20px;
 }
-
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-.vip {
-    font-family: Arial, sans-serif;
+.first-carousel {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-
-
 .carousel-container {
     position: relative;
+    z-index: 13000;
     width: 80%;
     margin: 20px auto;
-    overflow: hidden;
 }
-
 
 .carousel {
     display: flex;
     transition: transform 0.5s ease-in-out;
+    will-change: transform; /* Improve performance */
 }
 
 .carousel-item {
@@ -611,18 +610,13 @@ h1 {
     text-align: center;
 }
 
-
 .carousel-item img {
     width: 100%;
     height: 60vh;
     border-radius: 5px;
     object-fit: cover;
-
 }
 
-
-
-/* Caption styling */
 .caption {
     margin-top: 0;
     padding: 5px;
@@ -631,7 +625,6 @@ h1 {
     color: #fff;
     background-color: #333;
 }
-
 
 .prev,
 .next {
@@ -644,7 +637,7 @@ h1 {
     padding: 10px 20px;
     font-size: 18px;
     cursor: pointer;
-    z-index: 10;
+    z-index: 12000;
     border-radius: 5px;
 }
 
@@ -661,7 +654,6 @@ h1 {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
-
 @media (max-width: 768px) {
     .carousel-item {
         min-width: 50%;
@@ -673,4 +665,3 @@ h1 {
         min-width: 100%;
     }
 }
-
