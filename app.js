@@ -1,4 +1,4 @@
-// JavaScript for handling mega menu visibility
+
 const megaMenuDropdown = document.getElementById('megaMenuDropdown');
 const megaMenu = document.querySelector('.mega-menu');
 
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let currentSlide = 0;
     const totalSlides = slides.length;
 
-    // Initialize slider
+    // Initialize slider    
     function updateSlider() {
         // Move the slider track
         sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
@@ -100,28 +100,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Simplified event handler for info buttons
     function initializeMaterialInfo() {
-        // Add click handlers for info buttons
-        document.querySelectorAll('.info-toggle-btn').forEach(button => {
+        const infoButtons = document.querySelectorAll('.info-toggle-btn');
+        if (infoButtons.length === 0) return; // Early exit if no buttons
+    
+        infoButtons.forEach(button => {
             button.addEventListener('click', function (e) {
                 e.preventDefault();
-
-                // Find the closest material card and its info panel
                 const card = this.closest('.material-card');
                 const infoPanel = card.querySelector('.material-info');
                 const infoText = this.querySelector('.info-text');
-
-                // Close all other info panels
+    
+                // Close other info panels
                 document.querySelectorAll('.material-info').forEach(panel => {
                     if (panel !== infoPanel) {
                         panel.classList.remove('active');
-                        const otherButton = panel.closest('.material-card')
-                            .querySelector('.info-text');
-                        if (otherButton) {
-                            otherButton.textContent = 'INFO';
-                        }
+                        panel.style.display = 'none';
+                        const otherButton = panel.closest('.material-card').querySelector('.info-text');
+                        if (otherButton) otherButton.textContent = 'INFO';
                     }
                 });
-
+    
                 // Toggle current panel
                 if (!infoPanel.classList.contains('active')) {
                     infoPanel.classList.add('active');
@@ -129,32 +127,93 @@ document.addEventListener('DOMContentLoaded', function () {
                     infoText.textContent = 'CLOSE';
                 } else {
                     infoPanel.classList.remove('active');
-                    setTimeout(() => {
-                        infoPanel.style.display = 'none';
-                    }, 300); // Match transition duration
+                    setTimeout(() => { infoPanel.style.display = 'none'; }, 300);
                     infoText.textContent = 'INFO';
                 }
             });
         });
-
+    
         // Close panels when clicking outside
         document.addEventListener('click', function (e) {
             if (!e.target.closest('.material-card')) {
                 document.querySelectorAll('.material-info').forEach(panel => {
                     panel.classList.remove('active');
-                    setTimeout(() => {
-                        panel.style.display = 'none';
-                    }, 300);
-                    const button = panel.closest('.material-card')
-                        .querySelector('.info-text');
-                    if (button) {
-                        button.textContent = 'INFO';
-                    }
+                    setTimeout(() => { panel.style.display = 'none'; }, 300);
+                    const button = panel.closest('.material-card').querySelector('.info-text');
+                    if (button) button.textContent = 'INFO';
                 });
             }
         });
     }
+    
 
     // Initialize when DOM is loaded
     initializeMaterialInfo();
 });
+
+
+const carousel = document.querySelector('.carousel');
+const items = document.querySelectorAll('.carousel-item');
+const prevButton = document.querySelector('.prev');
+const nextButton = document.querySelector('.next');
+const itemsToMove = 1;
+let currentIndex = itemsToMove; // Start at the first real item after the clones
+
+// Clone the first and last items
+const firstItems = Array.from(items).slice(0, itemsToMove);
+const lastItems = Array.from(items).slice(-itemsToMove);
+
+firstItems.forEach(item => {
+    const clone = item.cloneNode(true);
+    carousel.appendChild(clone);
+});
+
+lastItems.forEach(item => {
+    const clone = item.cloneNode(true);
+    carousel.insertBefore(clone, carousel.firstChild);
+});
+
+function updateCarousel() {
+    const itemWidth = items[0].offsetWidth;
+    const offset = -(currentIndex * itemWidth);
+    carousel.style.transform = `translateX(${offset}px)`;
+}
+
+// Show the previous item
+prevButton.addEventListener('click', () => {
+    currentIndex--;
+    updateCarousel();
+
+    // Check if we are at the clone and reset to the last item
+    if (currentIndex < itemsToMove) {
+        setTimeout(() => {
+            currentIndex = items.length;
+            carousel.style.transition = 'none'; // Temporarily disable transition for jump
+            updateCarousel();
+            setTimeout(() => {
+                carousel.style.transition = 'transform 0.5s ease-in-out'; // Restore transition
+            }, 20); // Delay to allow transition reset
+        }, 500); // Match this delay with CSS transition duration
+    }
+});
+
+// Show the next item
+nextButton.addEventListener('click', () => {
+    currentIndex++;
+    updateCarousel();
+
+    // Check if we are at the clone and reset to the first item
+    if (currentIndex >= items.length + itemsToMove) {
+        setTimeout(() => {
+            currentIndex = itemsToMove;
+            carousel.style.transition = 'none'; // Temporarily disable transition for jump
+            updateCarousel();
+            setTimeout(() => {
+                carousel.style.transition = 'transform 0.5s ease-in-out'; // Restore transition
+            }, 20);
+        }, 500);
+    }
+});
+
+// Initial setup
+updateCarousel();

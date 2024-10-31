@@ -486,9 +486,9 @@ h1 {
 }
 
 /* Optional: Add animation */
-.material-info.show {
+/* .material-info.show {
     animation: fadeIn 0.3s ease forwards;
-}
+} */
 
 @keyframes fadeIn {
     from {
@@ -560,3 +560,117 @@ h1 {
     padding-bottom: 10px;
 
 }
+
+
+.position-relative {
+    overflow: hidden !important; /* This may cut off child elements if their positioning is not set properly */
+}
+.carousel-prev {
+    z-index: 2 !important; /* Increase if necessary */
+}
+
+
+.ml-2{
+    margin-left: 20px;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.vip {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+
+.carousel-container {
+    position: relative;
+    width: 80%;
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+
+.carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    min-width: 25%;
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: center;
+}
+
+
+.carousel-item img {
+    width: 100%;
+    height: 60vh;
+    border-radius: 5px;
+    object-fit: cover;
+
+}
+
+
+
+/* Caption styling */
+.caption {
+    margin-top: 0;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #fff;
+    background-color: #333;
+}
+
+
+.prev,
+.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 5px;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+@media (max-width: 768px) {
+    .carousel-item {
+        min-width: 50%;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-item {
+        min-width: 100%;
+    }
+}
+
