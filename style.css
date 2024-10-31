@@ -1,3 +1,31 @@
-body{
-    background-color: aqua;
+/* Custom font sizes for smaller screens */
+.responsive-text {
+    font-size: 0.9rem;
+    /* Default font size */
+}
+
+@media (max-width: 876px) {
+    .responsive-text {
+        font-size: 0.7rem;
+        /* Smaller font size for extra small screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .responsive-text {
+        font-size: 0.5rem;
+        /* Smaller font size for extra small screens */
+    }
+}
+
+.bg-custom-gray {
+    background-color: #565656;
+    color: white;
+    /* Optional text color for readability */
+}
+
+.bg-custom-dark {
+    background-color: #444444;
+    color: white;
+    /* Optional text color for readability */
 }
